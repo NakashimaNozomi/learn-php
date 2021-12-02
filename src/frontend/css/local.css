@@ -1,0 +1,26 @@
+.container {
+  margin-top: 2rem;
+}
+
+.dotted {
+  border-top: 5px dotted #333;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+.error {
+  background-color: #ff2a00;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>つぶやきったー | learn php</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="./css/local.css" />
+
+</head>
+
+<body>
+  <heaader>
+    <nav>
+      <div class="nav-wrapper">
+        <pclass="brand-logo">つぶやきったー</p>
+      </div>
+    </nav>
+  </heaader>
+  <main>
+    <div class="container">
+      <!-- 呟きエリア -->
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12 m9">
+              <i class="material-icons prefix">chat</i>
+              <textarea id="icon_prefix2" class="materialize-textarea js-wispText"></textarea>
+              <label for="icon_prefix2">どう？最近</label>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <button class="btn waves-effect waves-light js-submitButton col s12" type="button">つぶやく
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- // 呟きエリア -->
+
+      <hr class="dotted">
+
+      <!-- 一覧表示エリア -->
+      <div class="row list js-whisterList">
+
+      </div>
+      <!-- // 一覧表示エリア -->
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red js-toTop">
+        <i class="large material-icons">arrow_upward</i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- 削除確認modal -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <h4>本当に削除しますか？</h4>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="waves-effect waves-green btn-flat js-delete">削除する</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat js-cancel">戻る</a>
+    </div>
+  </div>
+  <template id="whisperTemplate">
+    <div class="col s12 js-wrapper">
+      <div class="card">
+        <div class="card-content js-detailField">
+          <p class="js-content"></p>
+          <p class="grey-text lighten-5 right-align js-time"></p>
+        </div>
+        <div class="card-content hide js-editField">
+          <div class="row mb0">
+            <div class="input-field col s10">
+              <textarea class="materialize-textarea js-editContent"></textarea>
+            </div>
+            <div class="input-field col s2">
+              <button class="btn waves-effect waves-light js-editSubmitButton" type="button"><i
+                  class="material-icons">send</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-action right-align">
+          <a class="waves-effect waves-light js-edit"><i class="material-icons left">edit</i>更新</a>
+          <a class="waves-effect waves-light modal-trigger js-deleteConfirm" href="#confirm-modal"><i
+              class="material-icons left">delete</i>削除</a>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script type="text/javascript" src="./js/materialize.min.js"></script>
+  <script type="text/javascript" src="./js/local.js"></script>
+</body>
+
+</html>

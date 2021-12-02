@@ -1,0 +1,282 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "whisperAPI",
+    "version": "1.0",
+    "description": "PHPライブコーディングで用いるつぶやきAPI",
+    "termsOfService": "localhost",
+    "contact": {
+      "name": "Nakamura Nozomi",
+      "email": "itijiku.cathy@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3100"
+    }
+  ],
+  "paths": {
+    "/whispers/": {
+      "get": {
+        "summary": "つぶやき一覧取得API",
+        "operationId": "get-whispers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/whisper"
+                  }
+                },
+                "examples": {
+                  "フロントモックデータ": {
+                    "value": [
+                      {
+                        "id": 1,
+                        "content": "今日は定時な予感！\n早く帰って猫を吸いたい！！🐈",
+                        "created_at": "2021-11-30 16:40:07",
+                        "updated_at": "2021-11-30 16:40:07"
+                      },
+                      {
+                        "id": 2,
+                        "content": "もしかして猫のごはん切らしてしまって、もうなかったかな！？\nあ〜〜〜！猫ちゃんごめんね！！",
+                        "created_at": "2021-11-30 17:42:12",
+                        "updated_at": "2021-11-30 17:42:12"
+                      },
+                      {
+                        "id": 3,
+                        "content": "よっしゃー定時だ！！！",
+                        "created_at": "2021-11-30 18:04:23",
+                        "updated_at": "2021-11-30 18:04:23"
+                      },
+                      {
+                        "id": 4,
+                        "content": "",
+                        "created_at": "2021-11-31 18:04:23",
+                        "updated_at": "2021-11-32 18:04:23"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "つぶやき一覧を取得する",
+        "parameters": []
+      },
+      "parameters": []
+    },
+    "/whisper/{whisperId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "whisperId",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "summary": "つぶやき取得API",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/whisper"
+                },
+                "examples": {
+                  "フロントモックデータ": {
+                    "value": {
+                      "id": 1,
+                      "content": "今日は天気がいいから洗濯物を干してみた！",
+                      "created_at": "2021-11-13 11:12:13",
+                      "updated_at": "2021-11-13 11:15:20"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-whispers-id",
+        "description": "指定したIDのつぶやき1件取得(今回は作成しない)"
+      },
+      "put": {
+        "summary": "つぶやき更新API",
+        "operationId": "put-whispers-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/whisper"
+                },
+                "examples": {
+                  "フロントモックデータ": {
+                    "value": {
+                      "id": 1,
+                      "content": "今日は天気がいいから洗濯物を干してみた！",
+                      "created_at": "2021-11-13 11:12:13",
+                      "updated_at": "2021-11-13 11:15:20"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "指定したIDのつぶやき1s件更新",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "リクエスト例": {
+                  "value": {
+                    "content": "string"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {
+                "example-1": {
+                  "value": {}
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "post": {
+        "summary": "つぶやき新規作成API",
+        "operationId": "post-whisper-whisperId",
+        "description": "つぶやきを新規作成する(ID未指定)",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/whisper"
+                },
+                "examples": {
+                  "フロントモックデータ": {
+                    "value": {
+                      "id": 1,
+                      "content": "今日は天気がいいから洗濯物を干してみた！",
+                      "created_at": "2021-11-13 11:12:13",
+                      "updated_at": "2021-11-13 11:15:20"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "リクエスト例": {
+                  "value": {
+                    "content": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "delete": {
+        "summary": "つぶやき削除API",
+        "operationId": "delete-whisper-whisperId",
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "examples": {
+                  "フロントモックデータ": {}
+                }
+              }
+            }
+          }
+        },
+        "description": "指定したIDのつぶやき1件削除\n成功時ステータスは204 (W3Cに基づいて: https://triple-underscore.github.io/rfc-others/RFC2616-ja.html#section-9.7 )"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "whisper": {
+        "title": "whisper",
+        "type": "object",
+        "examples": [
+          {
+            "id": 1,
+            "content": "string",
+            "created_at": "string",
+            "updated_at": "string"
+          }
+        ],
+        "description": "呟き",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1,
+            "readOnly": true
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "created_at": {
+            "type": "string",
+            "pattern": "^((((19|20)([2468][048]|[13579][26]|0[48])|2000)-02-29|((19|20)[0-9]{2}-(0[4678]|1[02])-(0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}-(0[1359]|11)-(0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}-02-(0[1-9]|1[0-9]|2[0-8])))\\s([01][0-9]|2[0-3]):([012345][0-9]):([012345][0-9]))$",
+            "example": "2021-11-12 13:14:15"
+          },
+          "updated_at": {
+            "type": "string",
+            "pattern": "^((((19|20)([2468][048]|[13579][26]|0[48])|2000)-02-29|((19|20)[0-9]{2}-(0[4678]|1[02])-(0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}-(0[1359]|11)-(0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}-02-(0[1-9]|1[0-9]|2[0-8])))\\s([01][0-9]|2[0-3]):([012345][0-9]):([012345][0-9]))$",
+            "example": "2021-11-12 13:14:15"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ]
+      }
+    }
+  }
+}

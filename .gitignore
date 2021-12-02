@@ -1,0 +1,7 @@
+.env
+
+/docker/php/log/*
+!/docker/php/log/.gitkeep
+
+/docker/nginx/log/*
+!/docker/nginx/log/.gitkeep
