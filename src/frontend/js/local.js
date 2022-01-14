@@ -16,7 +16,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 const showWhisper = async () => {
   const url = APIROOT + "/whispers/";
   const whisperList = await fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 200) {
+        throw Error(
+          "response status: " +
+            response.status +
+            ". Message: " +
+            response.statusText
+        );
+      }
+      return response.json();
+    })
     .catch((error) => {
       console.error(error);
       return [];
@@ -24,7 +34,7 @@ const showWhisper = async () => {
   if (whisperList.length > 0) {
     renderWhisper(whisperList);
   } else {
-    M.toast({html:"投稿がないか取得に失敗しました..."});
+    M.toast({ html: "投稿がないか取得に失敗しました..." });
   }
 };
 
@@ -40,7 +50,10 @@ const renderWhisper = (list) => {
   whisperListDOM.innerHTML = "";
   for (const _l of list) {
     const whisperDOM = document.importNode(template, true);
-    whisperDOM.querySelector(".js-content").innerHTML = _l.content.replaceAll("\n", "<br>");
+    whisperDOM.querySelector(".js-content").innerHTML = _l.content.replaceAll(
+      "\n",
+      "<br>"
+    );
     whisperDOM.querySelector(".js-editContent").defaultValue = _l.content;
     whisperDOM.querySelector(".js-time").textContent = _l.updated_at;
     whisperDOM.querySelector(".js-time").textContent = _l.updated_at;
@@ -94,7 +107,17 @@ const onSubmitClick = () => {
       },
       body: JSON.stringify(request),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status !== 201) {
+          throw Error(
+            "response status: " +
+              response.status +
+              ". Message: " +
+              response.statusText
+          );
+        }
+        return response.json();
+      })
       .catch((error) => {
         console.error(error);
         return undefined;
@@ -154,7 +177,17 @@ const editSubmitButtonClick = async (e) => {
     },
     body: JSON.stringify(request),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 200) {
+        throw Error(
+          "response status: " +
+            response.status +
+            ". Message: " +
+            response.statusText
+        );
+      }
+      return response.json();
+    })
     .catch((error) => {
       console.error(error);
       return undefined;
