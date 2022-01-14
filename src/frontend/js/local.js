@@ -1,7 +1,8 @@
 "use strict";
 
 // APIのURLが違う場合はこちらを変更
-const APIROOT = "http://127.0.0.1:3100";
+// const APIROOT = "http://127.0.0.1:3100";
+const APIROOT = "http://localhost:4001";
 let whisperList = [];
 let workInProgress = false;
 
