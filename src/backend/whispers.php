@@ -1,13 +1,12 @@
 <?php
 namespace App;
 
-use App\Util\DB;
+use App\Model\Whisper;
 
 function getWhisperList(): void
 {
-    // コネクション処理
-    $db = new DB();
-    $whisper_list = $db->fetchAll();
+
+    $whisper_list = Whisper::orderByDesc('created_at')->get()->toArray();
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($whisper_list);
