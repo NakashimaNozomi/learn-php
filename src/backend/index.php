@@ -1,4 +1,7 @@
 <?php
+namespace App;
+
+require_once './vendor/autoload.php';
 require_once './whispers.php';
 
 $url = $_SERVER['REQUEST_URI'];

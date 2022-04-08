@@ -1,6 +1,7 @@
 <?php
-require_once "./Util/DB.php";
-use Util\DB;
+namespace App;
+
+use App\Util\DB;
 
 function getWhisperList(): void
 {
