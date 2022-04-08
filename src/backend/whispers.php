@@ -1,24 +1,12 @@
 <?php
+require_once "./Util/DB.php";
+use Util\DB;
 
 function getWhisperList(): void
 {
-    $dsn = 'mysql:dbname=' . $_ENV['DB_DATABASE'] . ';host=' . $_ENV['DB_HOST'];
-    $user = $_ENV['DB_USERNAME'];
-    $password = $_ENV['DB_PASSWORD'];
-
-    try {
-        $dbh = new PDO($dsn, $user, $password);
-    } catch (PDOException $e) {
-        // DB接続エラー時
-        echo '接続失敗: ' . $e->getMessage();
-        exit();
-    }
-
-    $sql = 'SELECT id, content, created_at FROM mytable ORDER BY created_at DESC LIMIT 20;';
-    $prepare = $dbh->prepare($sql);
-    $prepare->execute();
-    $whisper_list = $prepare->fetchAll(PDO::FETCH_ASSOC);
-    $dbh = null; // DBの接続は必ず閉じる
+    // コネクション処理
+    $db = new DB();
+    $whisper_list = $db->fetchAll();
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($whisper_list);
